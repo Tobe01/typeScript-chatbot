@@ -144,5 +144,5 @@ This project is open source and available under the MIT License.
 ## Author
 
 **Tobechi Duru**
-Software Engineer (Frontend)
+Software Engineer (Frontend React(Next.js))
 
