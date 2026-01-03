@@ -1,0 +1,38 @@
+ button{
+  cursor: pointer;
+ }
+
+ .input-container {
+    display: flex;
+  }
+
+  .inputField{
+    border: 1px solid grey;
+    padding: 13px;
+    border-radius: 10px;
+    font-size: 16px;
+    flex-grow: 1;
+  }
+  
+  .sendButton{
+    background-color: rgb(25, 135, 84);
+    border: none;
+    color: white;
+    padding: 13px 20px;
+    border-radius: 10px;
+    font-size: 16px;
+    margin-left: 10px;
+  }
+
+  .clearButton{
+    background-color: rgb(212, 207, 207);
+    font-size: 16px;
+    margin-left: 10px;
+    border: none;
+    padding: 13px 20px;
+    border-radius: 10px;
+  }
+
+  .clearButton:hover{
+    background-color: rgb(156, 154, 154);
+  }

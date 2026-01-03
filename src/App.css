@@ -1,0 +1,22 @@
+/* CSS styles for chatApp */
+ .appContainer{
+    max-width: 600px;
+    margin: 0 auto;
+    height: 100vh;
+    padding-top: 5px;
+    text-align: center;
+  }
+
+  .prompt{
+    color: grey;
+  }
+
+  .moveText{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgb(25, 135, 84);
+    margin-top: 6px;
+    text-decoration: underline;
+    cursor: pointer;
+  }
