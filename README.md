@@ -1,148 +1,54 @@
-# React Chatbot
+# React + TypeScript + Vite
 
-A modular, React-based chatbot application designed to demonstrate clean component architecture, predictable state management, and scalable response handling. This project serves as a foundation for building rule-based or extensible chatbot systems using modern React practices.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
----
+Currently, two official plugins are available:
 
-## Overview
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-This chatbot application focuses on:
+## Expanding the ESLint configuration
 
-* Clear separation of concerns between UI, logic, and data
-* Reusable and composable React components
-* Structured chatbot responses using objects instead of raw strings
-* A scalable architecture suitable for future expansion (API integration, AI models, global state)
-
-The project is intentionally kept framework-light to make the core React concepts easy to understand and extend.
-
----
-
-## Features
-
-* Interactive chat interface
-* Structured chatbot response objects
-* Component-driven UI design
-* Predictable one-way data flow
-* Easy extension for new intents or response types
-
----
-
-## Tech Stack
-
-* **React** (Functional Components)
-* **JavaScript (ES6+)**
-* **CSS** (or your chosen styling approach)
-
----
-
-## Project Structure
-
-```text
-chatbot-project/
-├── public/
-│   └── vite.svg
-├── src/
-│   ├── assets/
-│   ├── components/
-│   │   ├── ChatInput.jsx
-│   │   ├── ChatInput.css
-│   │   ├── ChatMessage.jsx
-│   │   └── ChatMessages.jsx
-│   ├── hooks/
-│   │   └── useAutoScroll.jsx
-│   ├── App.jsx
-│   ├── App.css
-│   ├── index.css
-│   └── main.jsx
-├── index.html
-├── package.json
-├── package-lock.json
-├── vite.config.js
-├── eslint.config.js
-└── README.md
-```
-
-This structure reflects a clear separation between UI components, reusable hooks, assets, and application entry points, making the codebase easy to navigate and extend.
-
----
-
-## Chatbot Response Design
-
-Chatbot responses are structured as objects to allow flexibility and future growth.
-
-Example:
+If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
 ```js
-const botResponse = {
-  hello: "Hello! How can I help you?",
-  whatIsToday: "Today is {currentDate}",
-  data: {}
-}
+export default tseslint.config({
+  extends: [
+    // Remove ...tseslint.configs.recommended and replace with this
+    ...tseslint.configs.recommendedTypeChecked,
+    // Alternatively, use this for stricter rules
+    ...tseslint.configs.strictTypeChecked,
+    // Optionally, add this for stylistic rules
+    ...tseslint.configs.stylisticTypeChecked,
+  ],
+  languageOptions: {
+    // other options...
+    parserOptions: {
+      project: ['./tsconfig.node.json', './tsconfig.app.json'],
+      tsconfigRootDir: import.meta.dirname,
+    },
+  },
+})
 ```
 
-This approach makes it easy to:
+You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
-* Add new response types
-* Attach metadata or payloads
-* Separate UI rendering from business logic
+```js
+// eslint.config.js
+import reactX from 'eslint-plugin-react-x'
+import reactDom from 'eslint-plugin-react-dom'
 
----
-
-## Getting Started
-
-### Prerequisites
-
-* Node.js (v16 or later recommended)
-* npm or yarn
-
-### Installation
-
-```bash
-git clone https://github.com/your-username/react-chatbot.git
-cd react-chatbot
-npm install
+export default tseslint.config({
+  plugins: {
+    // Add the react-x and react-dom plugins
+    'react-x': reactX,
+    'react-dom': reactDom,
+  },
+  rules: {
+    // other rules...
+    // Enable its recommended typescript rules
+    ...reactX.configs['recommended-typescript'].rules,
+    ...reactDom.configs.recommended.rules,
+  },
+})
 ```
-
-### Run the App
-
-```bash
-npm run dev
-```
-
-The application will start on your local development server.
-
----
-
-## Extending the Chatbot
-
-You can extend this project by:
-
-* Adding new chatbot intents and response handlers
-* Connecting to an external API or AI service
-* Introducing global state management (Context API or state libraries)
-* Persisting chat history
-
----
-
-## Learning Goals
-
-This project is intended to reinforce:
-
-* Core React concepts
-* Prop-driven component design
-* State lifting and shared data patterns
-* Clean and maintainable frontend architecture
-
----
-
-## License
-
-This project is open source and available under the MIT License.
-
----
-
-## Author
-
-**Tobechi Duru**
-(Software Engineer)
-

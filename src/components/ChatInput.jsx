@@ -77,6 +77,8 @@ function ChatInput({ chatMessages, setChatMessage}){
 
   return(
     <>
+      <title>Chatbot</title>
+      
       <div className="input-container">
         <input placeholder="Send a message to Chatbot" size="30"
           className="inputField"  
