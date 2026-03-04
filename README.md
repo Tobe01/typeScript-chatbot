@@ -3,8 +3,10 @@
 A lightweight chatbot UI built with TypeScript that supports sending messages, rendering a conversation thread, and handling loading and error states. The project focuses on clean component structure, predictable state updates, and a mobile-friendly chat layout.
 
 ## Live Demo
-- Demo:[](https://tobe-chatbot.vercel.app/)
-- Repo: [](https://github.com/Tobe01/typeScript-chatbot)
+- Demo: (https://tobe-chatbot.vercel.app/)
+- Repo: (https://github.com/Tobe01/typeScript-chatbot)
+
+## Note: Project is stil ongoing
 
 ## Features
 - Send and render chat messages (user + bot)
