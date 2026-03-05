@@ -1,12 +1,43 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Chatbot } from 'supersimpledev'
 import dayjs from 'dayjs'
 import spinner from '../assets/loading-spinner.gif';
+import '../mediaqueries/chatapp.css';
 
 // Input Component
-function ChatInput({ chatMessages, setChatMessage}){
+function ChatInput({ chatMessages, setChatMessage, onComposerHeightChange }){
 
   const [ inputText, setInputText ] = useState('');
+  const composerRef = useRef(null);
+
+  useEffect(() => {
+    const composerElement = composerRef.current;
+    if (!composerElement || !onComposerHeightChange) {
+      return;
+    }
+
+    const reportComposerHeight = () => {
+      onComposerHeightChange(composerElement.offsetHeight);
+    };
+
+    reportComposerHeight();
+
+    if (typeof ResizeObserver === 'undefined') {
+      window.addEventListener('resize', reportComposerHeight);
+      return () => {
+        window.removeEventListener('resize', reportComposerHeight);
+      };
+    }
+
+    const resizeObserver = new ResizeObserver(reportComposerHeight);
+    resizeObserver.observe(composerElement);
+    window.addEventListener('resize', reportComposerHeight);
+
+    return () => {
+      resizeObserver.disconnect();
+      window.removeEventListener('resize', reportComposerHeight);
+    };
+  }, [onComposerHeightChange]);
 
   function fetchMessage(event){
     setInputText(event.target.value);
@@ -67,21 +98,13 @@ function ChatInput({ chatMessages, setChatMessage}){
     { event.key === "Escape" ?  setInputText('') : ''}
   }
 
-  const [ content, setContent ] = useState('Move textbox to bottom');
-
-
-  // function to flip the text content below the input field onclick
-  function updateContent(){
-    setContent ( content === "Move textbox to bottom" ? "Move textbox to top" : "Move textbox to bottom" );
-  }
-
   return(
     <>
-      <title>Chatbot</title>
-      
-      <div className="input-container">
-        <input placeholder="Send a message to Chatbot" size="30"
+      <div className="input-container" ref={composerRef} role="group" aria-label="Message composer">
+        <input placeholder="message Chatbot"
           className="inputField"  
+          type="text"
+          aria-label="Message input"
         
           onChange={fetchMessage}
           value={inputText}
@@ -95,11 +118,6 @@ function ChatInput({ chatMessages, setChatMessage}){
         <button className="clearButton"
           onClick={clearMessage}
         >Clear</button>
-      </div>
-      <div className="moveText">
-        <p
-          onClick={updateContent}
-        >{content}</p>
       </div>
     </>
   )

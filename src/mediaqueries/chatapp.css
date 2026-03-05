@@ -1,0 +1,21 @@
+/* Mobile phones */
+@media (max-width: 500px) {
+  .appContainer{
+    max-width: 100%;
+  }
+
+  .input-container{
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .sendButton,
+  .clearButton{
+    padding: 12px 16px;
+  }
+}
+
+/* small laptop - tabs */
+@media (min-width: 501px) and (max-width: 1024px) {
+
+}
